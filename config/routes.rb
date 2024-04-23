@@ -1,12 +1,13 @@
 
 Rails.application.routes.draw do
-  get 'render/index'
-  get 'page/home'
-  get 'about', to: 'pages#about'
+  get 'pages/home'
+  get 'pages/about'
+
   get "up" => "rails/health#show", as: :rails_health_check
-   root 'pages#home'
-  
+
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  root "pages#home"
 end
