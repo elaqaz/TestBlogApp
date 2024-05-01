@@ -1,6 +1,8 @@
 
 Rails.application.routes.draw do
+  # Defines the routes for the posts controller
   resources :articles
+  # Defines the routes for the comments controller
   get 'pages/home'
   get 'pages/about'
 
