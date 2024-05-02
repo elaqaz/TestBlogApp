@@ -21,12 +21,22 @@ class ArticlesController < ApplicationController
 
   # POST
   def create
-    render plain: params[:article]
+
+    @article = Article.new(params.require(:article).permit(:title, :description))
+    # if
+     @article.save
+      flash[:notice] = "Article was created successfully."
+      redirect_to (@article)
+    # else
+    #   render 'new'
+  end
+
+    # render plain: params[:article]
     # .inspect
 
   # POST /articles or /articles.json
   # def create
-  #   @article = Article.new(article_params)
+   
 
   #   respond_to do |format|
   #     if @article.save
@@ -70,4 +80,4 @@ class ArticlesController < ApplicationController
     def article_params
       params.require(:article).permit(:title, :description)
     end
-  end
+end
