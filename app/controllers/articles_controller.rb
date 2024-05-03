@@ -20,16 +20,19 @@ class ArticlesController < ApplicationController
   end
 
   # POST
-  def create
-
-    @article = Article.new(params.require(:article).permit(:title, :description))
-    # if
-     @article.save
-      flash[:notice] = "Article was created successfully."
-      redirect_to (@article)
-    # else
-    #   render 'new'
+ # POST
+def create
+  @article = Article.new(params.require(:article).permit(:title, :description))
+  
+  if @article.save
+    flash[:notice] = "Article was created successfully."
+    redirect_to @article
+  else
+    flash[:alert] = "Error: Article could not be saved."
+    render 'new'
   end
+end
+
 
     # render plain: params[:article]
     # .inspect
@@ -47,7 +50,7 @@ class ArticlesController < ApplicationController
   #       format.json { render json: @article.errors, status: :unprocessable_entity }
   #     end
   #   end
-  end
+  # end
 
   # PATCH/PUT /articles/1 or /articles/1.json
   def update
@@ -77,6 +80,7 @@ class ArticlesController < ApplicationController
     def set_article
       @article = Article.find(params[:id])
     end
+
     def article_params
       params.require(:article).permit(:title, :description)
     end
