@@ -19,19 +19,17 @@ class ArticlesController < ApplicationController
   def edit
   end
 
-  # POST
- # POST
-def create
-  @article = Article.new(params.require(:article).permit(:title, :description))
-  
-  if @article.save
-    flash[:notice] = "Article was created successfully."
-    redirect_to @article
-  else
-    flash[:alert] = "Error: Article could not be saved."
-    render 'new'
+  # POST /articles or /articles.json
+  def create
+    @article = Article.new(article_params)
+    
+    if @article.save
+      flash[:notice] = "Article was created successfully."
+      redirect_to @article
+    else
+      render 'new'
+    end
   end
-end
 
 
     # render plain: params[:article]
