@@ -1,7 +1,8 @@
 require "test_helper"
 
 class ArticleTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "should belong to user" do
+    article = articles(:one)
+    assert article.user
+
 end
